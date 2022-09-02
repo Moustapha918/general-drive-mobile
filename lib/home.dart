@@ -1,3 +1,5 @@
+import 'package:deyd_kata_flutter/search_component.dart';
+import 'package:deyd_kata_flutter/vehicle_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,62 +11,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController textController = TextEditingController();
+
+  final List<int> colorCodes = <int>[600, 500, 100];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SeachComponent(),
-      ],
-    );
-  }
-}
-
-class SeachComponent extends StatelessWidget {
-  const SeachComponent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      margin: const EdgeInsets.only(top: 40),
-      child: Card(
-          child: Row(
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
         children: [
-          TextButton.icon(
-              onPressed: () => {},
-              icon: const Icon(
-                Icons.location_on,
-                color: Colors.pinkAccent,
-              ),
-              label: const Text('current location',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black))),
-          const Spacer(),
-          const VerticalDivider(
-            width: 20,
-            thickness: 1,
-            indent: 10,
-            endIndent: 10,
-            color: Colors.grey,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 40.0),
-            child: TextButton.icon(
-                onPressed: () => {},
-                icon: const Icon(
-                  Icons.calendar_month_outlined,
-                  color: Colors.pinkAccent,
-                ),
-                label: const Text(
-                  'When',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                )),
-          )
+          const SeachComponent(),
+          VehicleList(),
         ],
-      )),
+      ),
     );
   }
 }
