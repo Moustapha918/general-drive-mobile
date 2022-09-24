@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          const SeachComponent(),
+          SeachComponent(),
           VehicleList(),
         ],
       ),
