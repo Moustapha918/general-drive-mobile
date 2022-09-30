@@ -8,9 +8,15 @@ class SeachComponent extends StatefulWidget {
   }) : super(key: key);
 
   static final List<Ville> villes = [
-    Ville(code: 'v1', title: "Lion"),
-    Ville(code: 'v2', title: "Flamingo"),
-    Ville(code: 'v3', title: "Hippo"),
+    Ville(code: 'tey', title: "Teyaret"),
+    Ville(code: 'ara', title: "Arafat"),
+    Ville(code: 'dar', title: "Dar Naim"),
+    Ville(code: 'tou', title: "Toujounin"),
+    Ville(code: 'tev', title: "Tevragh zeina"),
+    Ville(code: 'ksa', title: "Leksar"),
+    Ville(code: 'seb', title: "sebkha"),
+    Ville(code: 'min', title: "El mina"),
+    Ville(code: 'riy', title: "riyad"),
   ];
 
   @override
@@ -31,8 +37,7 @@ class _SeachComponentState extends State<SeachComponent> {
       builder: (ctx) {
         return MultiSelectBottomSheet(
           items: _items,
-          onConfirm: (values) {
-          },
+          onConfirm: (values) {},
           maxChildSize: 0.8,
           initialValue: const [],
         );

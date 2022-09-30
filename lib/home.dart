@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           SeachComponent(),
-          VehicleList(),
+          const VehicleList(),
         ],
       ),
     );

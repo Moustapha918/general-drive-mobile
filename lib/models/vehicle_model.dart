@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'owner.dart';
 
 class VehicleModel {
+  final int id;
   final String registrationNumber;
   final String brand;
   final String insuranceExpirationDate;
@@ -18,6 +19,7 @@ class VehicleModel {
   Owner owner;
 
   VehicleModel({
+    required this.id,
     required this.registrationNumber,
     required this.brand,
     required this.insuranceExpirationDate,
@@ -45,23 +47,24 @@ class VehicleModel {
     final Owner? owner,
   }) {
     return VehicleModel(
-      registrationNumber: registrationNumber ?? this.registrationNumber,
-      brand: brand ?? this.brand,
-      insuranceExpirationDate: insuranceExpirationDate ?? this.insuranceExpirationDate,
-      modelYear: modelYear ?? this.modelYear,
-      wheelsNbr: wheelsNbr ?? this.wheelsNbr,
-      color: color ?? this.color,
-      type: type ?? this.type,
-      sellPrice: sellPrice ?? this.sellPrice,
-      rentPrice: rentPrice ?? this.rentPrice,
-      images: images ?? this.images,
-      owner: owner ?? this.owner,
-    );
+        registrationNumber: registrationNumber ?? this.registrationNumber,
+        brand: brand ?? this.brand,
+        insuranceExpirationDate:
+            insuranceExpirationDate ?? this.insuranceExpirationDate,
+        modelYear: modelYear ?? this.modelYear,
+        wheelsNbr: wheelsNbr ?? this.wheelsNbr,
+        color: color ?? this.color,
+        type: type ?? this.type,
+        sellPrice: sellPrice ?? this.sellPrice,
+        rentPrice: rentPrice ?? this.rentPrice,
+        images: images ?? this.images,
+        owner: owner ?? this.owner,
+        id: id ?? id);
   }
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
-  
+
     result.addAll({'registrationNumber': registrationNumber});
     result.addAll({'brand': brand});
     result.addAll({'insuranceExpirationDate': insuranceExpirationDate});
@@ -73,12 +76,13 @@ class VehicleModel {
     result.addAll({'rentPrice': rentPrice});
     result.addAll({'images': images});
     result.addAll({'owner': owner.toMap()});
-  
+
     return result;
   }
 
   factory VehicleModel.fromMap(Map<String, dynamic> map) {
     return VehicleModel(
+      id: map['id']?.toInt() ?? 0,
       registrationNumber: map['registrationNumber'] ?? '',
       brand: map['brand'] ?? '',
       insuranceExpirationDate: map['insuranceExpirationDate'] ?? '',
@@ -93,9 +97,26 @@ class VehicleModel {
     );
   }
 
+  factory VehicleModel.fromJsonMap(dynamic map) {
+    return VehicleModel(
+        registrationNumber: map['registrationNumber'] ?? '',
+        brand: map['brand'] ?? '',
+        insuranceExpirationDate: map['insuranceExpirationDate'] ?? '',
+        modelYear: map['modelYear'] ?? '',
+        wheelsNbr: map['wheelsNbr']?.toInt() ?? 0,
+        color: map['color'] ?? '',
+        type: map['type'] ?? '',
+        sellPrice: map['sellPrice']?.toInt() ?? 0,
+        rentPrice: map['rentPrice']?.toInt() ?? 0,
+        images: List<String>.from(map['images']),
+        owner: Owner.fromMap(map['owner']),
+        id: map['id']?.toInt() ?? 0);
+  }
+
   String toJson() => json.encode(toMap());
 
-  factory VehicleModel.fromJson(String source) => VehicleModel.fromMap(json.decode(source));
+  factory VehicleModel.fromJson(String source) =>
+      VehicleModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -105,33 +126,33 @@ class VehicleModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is VehicleModel &&
-      other.registrationNumber == registrationNumber &&
-      other.brand == brand &&
-      other.insuranceExpirationDate == insuranceExpirationDate &&
-      other.modelYear == modelYear &&
-      other.wheelsNbr == wheelsNbr &&
-      other.color == color &&
-      other.type == type &&
-      other.sellPrice == sellPrice &&
-      other.rentPrice == rentPrice &&
-      listEquals(other.images, images) &&
-      other.owner == owner;
+        other.registrationNumber == registrationNumber &&
+        other.brand == brand &&
+        other.insuranceExpirationDate == insuranceExpirationDate &&
+        other.modelYear == modelYear &&
+        other.wheelsNbr == wheelsNbr &&
+        other.color == color &&
+        other.type == type &&
+        other.sellPrice == sellPrice &&
+        other.rentPrice == rentPrice &&
+        listEquals(other.images, images) &&
+        other.owner == owner;
   }
 
   @override
   int get hashCode {
     return registrationNumber.hashCode ^
-      brand.hashCode ^
-      insuranceExpirationDate.hashCode ^
-      modelYear.hashCode ^
-      wheelsNbr.hashCode ^
-      color.hashCode ^
-      type.hashCode ^
-      sellPrice.hashCode ^
-      rentPrice.hashCode ^
-      images.hashCode ^
-      owner.hashCode;
+        brand.hashCode ^
+        insuranceExpirationDate.hashCode ^
+        modelYear.hashCode ^
+        wheelsNbr.hashCode ^
+        color.hashCode ^
+        type.hashCode ^
+        sellPrice.hashCode ^
+        rentPrice.hashCode ^
+        images.hashCode ^
+        owner.hashCode;
   }
 }
