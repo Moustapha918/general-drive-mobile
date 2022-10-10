@@ -10,17 +10,18 @@ class HttpServices {
 
   Future<List<VehicleModel>> getVehicles() async {
     var url = Uri.http('localhost:8080', '/api/vehicles');
-    var response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      List<dynamic> body = jsonDecode(response.body) as List;
-      List<VehicleModel> vehicles = body
-          .map((item) => VehicleModel.fromJsonMap((item as String)))
-          .toList();
-
-      return vehicles;
-    } else {
-      throw "Unable to retreive vehicles";
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        var res = jsonDecode(response.body)
+            .map<VehicleModel>((item) => VehicleModel.fromJson(item))
+            .toList();
+        return res;
+      } else {
+        throw "Unable to retreive vehicles";
+      }
+    } catch (e) {
+      return [];
     }
   }
 }

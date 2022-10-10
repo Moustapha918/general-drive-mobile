@@ -1,4 +1,6 @@
+import 'package:deyd_kata_flutter/filter_vehicle_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'home.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -7,7 +9,10 @@ Future main() async {
   // NOTE: fileName defaults to .env and can be omitted in this case.
   // Ensure that the filename corresponds to the path in step 1 and 2.
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => FilterVehicleNotfier())
+  ], child: const MyApp()));
 }
 // void main() {
 //   runApp(const MyApp());

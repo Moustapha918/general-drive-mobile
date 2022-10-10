@@ -12,11 +12,12 @@ class VehicleModel {
   final String modelYear;
   final int wheelsNbr;
   final String color;
+  final String location;
   final String type;
   final int sellPrice;
   final int rentPrice;
   final List<String> images;
-  Owner owner;
+  // Owner owner;
 
   VehicleModel({
     required this.id,
@@ -26,11 +27,12 @@ class VehicleModel {
     required this.modelYear,
     required this.wheelsNbr,
     required this.color,
+    required this.location,
     required this.type,
     required this.sellPrice,
     required this.rentPrice,
     required this.images,
-    required this.owner,
+    // required this.owner,
   });
 
   VehicleModel copyWith({
@@ -40,6 +42,7 @@ class VehicleModel {
     String? modelYear,
     int? wheelsNbr,
     String? color,
+    String? location,
     String? type,
     int? sellPrice,
     int? rentPrice,
@@ -54,11 +57,12 @@ class VehicleModel {
         modelYear: modelYear ?? this.modelYear,
         wheelsNbr: wheelsNbr ?? this.wheelsNbr,
         color: color ?? this.color,
+        location: location ?? this.location,
         type: type ?? this.type,
         sellPrice: sellPrice ?? this.sellPrice,
         rentPrice: rentPrice ?? this.rentPrice,
         images: images ?? this.images,
-        owner: owner ?? this.owner,
+        // owner: owner ?? this.owner,
         id: id ?? id);
   }
 
@@ -71,17 +75,18 @@ class VehicleModel {
     result.addAll({'modelYear': modelYear});
     result.addAll({'wheelsNbr': wheelsNbr});
     result.addAll({'color': color});
+    result.addAll({'location': location});
     result.addAll({'type': type});
     result.addAll({'sellPrice': sellPrice});
     result.addAll({'rentPrice': rentPrice});
     result.addAll({'images': images});
-    result.addAll({'owner': owner.toMap()});
+    // result.addAll({'owner': owner.toMap()});
 
     return result;
   }
 
   factory VehicleModel.fromMap(Map<String, dynamic> map) {
-    return VehicleModel(
+    var car = VehicleModel(
       id: map['id']?.toInt() ?? 0,
       registrationNumber: map['registrationNumber'] ?? '',
       brand: map['brand'] ?? '',
@@ -89,38 +94,25 @@ class VehicleModel {
       modelYear: map['modelYear'] ?? '',
       wheelsNbr: map['wheelsNbr']?.toInt() ?? 0,
       color: map['color'] ?? '',
+      location: map['location'] ?? '',
       type: map['type'] ?? '',
       sellPrice: map['sellPrice']?.toInt() ?? 0,
       rentPrice: map['rentPrice']?.toInt() ?? 0,
-      images: List<String>.from(map['images']),
-      owner: Owner.fromMap(map['owner']),
+      images: List.from(map[
+          'images']), // (map['images'] as List).map((e) => e.toString()).toList(),
+      // owner: Owner.fromMap(map['owner']),
     );
-  }
-
-  factory VehicleModel.fromJsonMap(dynamic map) {
-    return VehicleModel(
-        registrationNumber: map['registrationNumber'] ?? '',
-        brand: map['brand'] ?? '',
-        insuranceExpirationDate: map['insuranceExpirationDate'] ?? '',
-        modelYear: map['modelYear'] ?? '',
-        wheelsNbr: map['wheelsNbr']?.toInt() ?? 0,
-        color: map['color'] ?? '',
-        type: map['type'] ?? '',
-        sellPrice: map['sellPrice']?.toInt() ?? 0,
-        rentPrice: map['rentPrice']?.toInt() ?? 0,
-        images: List<String>.from(map['images']),
-        owner: Owner.fromMap(map['owner']),
-        id: map['id']?.toInt() ?? 0);
+    return car;
   }
 
   String toJson() => json.encode(toMap());
 
-  factory VehicleModel.fromJson(String source) =>
-      VehicleModel.fromMap(json.decode(source));
+  factory VehicleModel.fromJson(Map<String, dynamic> map) =>
+      VehicleModel.fromMap(map);
 
   @override
   String toString() {
-    return 'VehicleModel(registrationNumber: $registrationNumber, brand: $brand, insuranceExpirationDate: $insuranceExpirationDate, modelYear: $modelYear, wheelsNbr: $wheelsNbr, color: $color, type: $type, sellPrice: $sellPrice, rentPrice: $rentPrice, images: $images, owner: $owner)';
+    return 'VehicleModel(registrationNumber: $registrationNumber, brand: $brand, insuranceExpirationDate: $insuranceExpirationDate, modelYear: $modelYear, wheelsNbr: $wheelsNbr, color: $color, type: $type, sellPrice: $sellPrice, rentPrice: $rentPrice)';
   }
 
   @override
@@ -134,11 +126,12 @@ class VehicleModel {
         other.modelYear == modelYear &&
         other.wheelsNbr == wheelsNbr &&
         other.color == color &&
+        other.location == location &&
         other.type == type &&
         other.sellPrice == sellPrice &&
         other.rentPrice == rentPrice &&
-        listEquals(other.images, images) &&
-        other.owner == owner;
+        listEquals(other.images, images);
+    // other.owner == owner;
   }
 
   @override
@@ -149,10 +142,11 @@ class VehicleModel {
         modelYear.hashCode ^
         wheelsNbr.hashCode ^
         color.hashCode ^
+        location.hashCode ^
         type.hashCode ^
         sellPrice.hashCode ^
         rentPrice.hashCode ^
-        images.hashCode ^
-        owner.hashCode;
+        images.hashCode;
+    // owner.hashCode;
   }
 }

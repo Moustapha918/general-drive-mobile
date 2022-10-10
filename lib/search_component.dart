@@ -1,11 +1,12 @@
+import 'package:deyd_kata_flutter/filter_vehicle_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:provider/provider.dart';
 
 class SeachComponent extends StatefulWidget {
-  SeachComponent({
-    Key? key,
-  }) : super(key: key);
+  const SeachComponent({Key? key}) : super(key: key);
 
   static final List<Ville> villes = [
     Ville(code: 'tey', title: "Teyaret"),
@@ -24,7 +25,7 @@ class SeachComponent extends StatefulWidget {
 }
 
 class _SeachComponentState extends State<SeachComponent> {
-  List<Ville> selectedVille = [];
+  List<Ville> selectedVilles = [];
 
   final _items = SeachComponent.villes
       .map((ville) => MultiSelectItem<Ville>(ville, ville.title))
@@ -37,7 +38,12 @@ class _SeachComponentState extends State<SeachComponent> {
       builder: (ctx) {
         return MultiSelectBottomSheet(
           items: _items,
-          onConfirm: (values) {},
+          onConfirm: (values) {
+            selectedVilles = values.map((value) => value as Ville).toList();
+            context
+                .read<FilterVehicleNotfier>()
+                .updateSelectedVille(selectedVilles);
+          },
           maxChildSize: 0.8,
           initialValue: const [],
         );

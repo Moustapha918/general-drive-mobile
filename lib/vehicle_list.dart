@@ -1,6 +1,8 @@
+import 'package:deyd_kata_flutter/filter_vehicle_notifier.dart';
 import 'package:deyd_kata_flutter/services/http_services.dart';
 import 'package:flutter/material.dart';
 import 'models/vehicle_model.dart';
+import 'package:provider/provider.dart';
 
 class VehicleList extends StatefulWidget {
   const VehicleList({
@@ -18,21 +20,32 @@ class _VehicleListState extends State<VehicleList> {
   Widget build(BuildContext context) => FutureBuilder(
       future: httpServices.getVehicles(),
       builder: (context, AsyncSnapshot<List<VehicleModel>> snapshot) {
-        print(snapshot);
         if (snapshot.hasData) {
           List<VehicleModel>? vehicles = snapshot.data;
+          var selectedLocations =
+              context.watch<FilterVehicleNotfier>().selectedLocations;
+
+          if (selectedLocations.isNotEmpty) {
+            vehicles = vehicles
+                ?.where((vehicle) => selectedLocations!
+                    .map((ville) => ville.title.toLowerCase())
+                    .toList()
+                    .contains(vehicle.location.toLowerCase()))
+                .toList();
+          }
           return Expanded(
               child: ListView.separated(
             padding: const EdgeInsets.all(8),
             itemCount: vehicles!.length,
             itemBuilder: (BuildContext context, int index) {
-              var vehicle = vehicles[index];
+              var vehicle = vehicles![index];
               return Column(
                 children: [
-                  Image.network(vehicle.images[0],
-                      errorBuilder: (BuildContext context, Object exception,
-                              StackTrace? stackTrace) =>
-                          Image.asset('assets/images/broken-1.png')),
+                  if (vehicle.images.isNotEmpty)
+                    Image.network(vehicle.images[0],
+                        errorBuilder: (BuildContext context, Object exception,
+                                StackTrace? stackTrace) =>
+                            Image.asset('assets/images/broken-1.png')),
                   SizedBox(
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
