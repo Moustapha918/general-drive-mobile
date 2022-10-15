@@ -1,6 +1,6 @@
+import 'package:deyd_kata_flutter/booking_dates_modal.dart';
 import 'package:deyd_kata_flutter/filter_vehicle_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:provider/provider.dart';
@@ -97,12 +97,20 @@ class _SeachComponentState extends State<SeachComponent> {
   }
 
   selectSearchDates() async {
-    var nextDay = DateTime.now();
+    DateTime now = DateTime.now();
+    var nextDay = DateTime(now.year, now.month, now.day);
+
     List<DateTime> availableDate = [nextDay];
     for (int i = 0; i < 90; i++) {
       nextDay = nextDay.add(const Duration(days: 1));
       availableDate.add(nextDay);
     }
+
+    var hoursOfTheDay = [];
+    for (int i = 0; i < 24; i++) {
+      hoursOfTheDay.add(i.toString() + ' H');
+    }
+
     await showModalBottomSheet(
       isScrollControlled: true, // required for min/max child size
       context: context,
@@ -112,88 +120,8 @@ class _SeachComponentState extends State<SeachComponent> {
         ),
       ),
       builder: (ctx) {
-        return SizedBox(
-          height: 380,
-          child: DefaultTabController(
-            length: 2,
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 16,
-                toolbarHeight: 0,
-                bottom: TabBar(
-                  tabs: [
-                    Tab(
-                        child: Column(
-                      children: const [
-                        Text(
-                          'Date debut',
-                          style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'Choisir un date',
-                          style: TextStyle(color: Colors.black),
-                        )
-                      ],
-                    )),
-                    Tab(
-                      child: Column(
-                        children: const [
-                          Text(
-                            'Date Fin',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Choisir un date',
-                            style: TextStyle(color: Colors.black),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              body: TabBarView(
-                children: [
-                  const Icon(Icons.directions_car),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ListView.separated(
-                          padding: const EdgeInsets.all(14),
-                          itemCount: availableDate.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            String dateLine = DateFormat.yMMMEd()
-                                .format(availableDate[index]);
-                            return Column(
-                              children: [
-                                SizedBox(
-                                  height: 40,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Text(dateLine),
-                                  ),
-                                )
-                              ],
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) =>
-                              const Divider(
-                                  color: Colors.pinkAccent, height: 2),
-                        ),
-                      ),
-                      const Spacer(),
-                      const Text('Hours')
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        );
+        return BookingDatesModal(
+            availableDate: availableDate, hoursOfTheDay: hoursOfTheDay);
       },
     );
   }
