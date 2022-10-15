@@ -63,7 +63,7 @@ class VehicleModel {
         rentPrice: rentPrice ?? this.rentPrice,
         images: images ?? this.images,
         // owner: owner ?? this.owner,
-        id: id ?? id);
+        id: id);
   }
 
   Map<String, dynamic> toMap() {

@@ -15,19 +15,20 @@ class VehicleList extends StatefulWidget {
 
 class _VehicleListState extends State<VehicleList> {
   final HttpServices httpServices = HttpServices();
+  List<VehicleModel>? vehicles;
 
   @override
   Widget build(BuildContext context) => FutureBuilder(
       future: httpServices.getVehicles(),
       builder: (context, AsyncSnapshot<List<VehicleModel>> snapshot) {
         if (snapshot.hasData) {
-          List<VehicleModel>? vehicles = snapshot.data;
+          vehicles = snapshot.data;
           var selectedLocations =
               context.watch<FilterVehicleNotfier>().selectedLocations;
 
           if (selectedLocations.isNotEmpty) {
             vehicles = vehicles
-                ?.where((vehicle) => selectedLocations!
+                ?.where((vehicle) => selectedLocations
                     .map((ville) => ville.title.toLowerCase())
                     .toList()
                     .contains(vehicle.location.toLowerCase()))
