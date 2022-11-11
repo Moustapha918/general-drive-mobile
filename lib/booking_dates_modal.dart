@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class BookingDatesModal extends StatelessWidget {
+class BookingDatesModal extends StatefulWidget {
   BookingDatesModal({
     Key? key,
     required this.availableDate,
@@ -12,15 +12,28 @@ class BookingDatesModal extends StatelessWidget {
 
   final List<DateTime> availableDate;
   final List hoursOfTheDay;
+
+  @override
+  State<BookingDatesModal> createState() => _BookingDatesModalState();
+}
+
+class _BookingDatesModalState extends State<BookingDatesModal> {
   DateTime? pickedStartDay;
+
   DateTime? pickedEndDay;
+
   int? pickedStartHour;
+
   int? pickedEndHour;
+
+  int? _pickedStartDayIndex;
+  int? _pickedEndDayIndex;
 
   final ButtonStyle confirmationButtonStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontFamily: 'RobotoMono'),
       minimumSize: const Size.fromHeight(40),
       backgroundColor: Colors.pinkAccent);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,8 +49,9 @@ class BookingDatesModal extends StatelessWidget {
                   backgroundColor: Colors.white,
                   surfaceTintColor: Colors.pinkAccent,
                   elevation: 16,
-                  toolbarHeight: 20,
+                  toolbarHeight: 10,
                   bottom: TabBar(
+                    // padding: const EdgeInsets.only(top: 10),
                     indicatorColor: Colors.pinkAccent,
                     tabs: [
                       Tab(
@@ -50,25 +64,27 @@ class BookingDatesModal extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            pickedStartDay != null ? 'not picked' : 'Picked',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                            pickedStartDay == null
+                                ? 'Choisir ...'
+                                : DateFormat.MEd().format(pickedStartDay!),
+                            style: const TextStyle(color: Colors.black),
                           )
                         ],
                       )),
                       Tab(
                         child: Column(
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               'Date Fin',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Choisir un date',
-                              style: TextStyle(color: Colors.black),
+                              pickedEndDay == null
+                                  ? 'Choisir ...'
+                                  : DateFormat.MEd().format(pickedEndDay!),
+                              style: const TextStyle(color: Colors.black),
                             )
                           ],
                         ),
@@ -83,25 +99,35 @@ class BookingDatesModal extends StatelessWidget {
                         Expanded(
                           child: ListView.separated(
                               padding: const EdgeInsets.all(14),
-                              itemCount: availableDate.length,
+                              itemCount: widget.availableDate.length,
                               itemBuilder: (BuildContext context, int index) {
                                 String dateLine;
                                 if (index == 0) {
                                   dateLine = 'Aujourd\'hui';
                                 } else {
                                   dateLine = DateFormat.yMMMEd()
-                                      .format(availableDate[index]);
+                                      .format(widget.availableDate[index]);
                                 }
 
-                                return SizedBox(
-                                  height: 40,
-                                  child: GestureDetector(
-                                    onTap: () =>
-                                        {pickedStartDay = availableDate[index]},
-                                    child: SizedBox(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                        child: Text(dateLine),
+                                return Container(
+                                  color: _pickedStartDayIndex == index
+                                      ? const Color.fromRGBO(0, 0, 0, 0.3)
+                                      : Colors.white,
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _pickedStartDayIndex = index;
+                                          pickedStartDay =
+                                              widget.availableDate[index];
+                                        });
+                                      },
+                                      child: SizedBox(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(6.0),
+                                          child: Text(dateLine),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -109,20 +135,26 @@ class BookingDatesModal extends StatelessWidget {
                               },
                               separatorBuilder:
                                   (BuildContext context, int index) {
-                                return const Divider(color: Colors.grey);
+                                return const Divider(
+                                    color: Colors.grey, thickness: 0.6);
                               }),
                         ),
                         const SizedBox(width: 20),
                         Expanded(
                           child: ListView.separated(
                             padding: const EdgeInsets.all(14),
-                            itemCount: hoursOfTheDay.length,
+                            itemCount: widget.hoursOfTheDay.length,
                             itemBuilder: (BuildContext context, int index) {
-                              String hourLine = hoursOfTheDay[index];
-                              return GestureDetector(
-                                onTap: () => pickedStartHour = index,
+                              String hourLine = widget.hoursOfTheDay[index];
+
+                              return Container(
+                                color: pickedStartHour == index
+                                    ? const Color.fromRGBO(0, 0, 0, 0.3)
+                                    : Colors.white,
                                 child: GestureDetector(
-                                  onTap: () => pickedStartHour = index,
+                                  onTap: () => setState(() {
+                                    pickedStartHour = index;
+                                  }),
                                   child: SizedBox(
                                     height: 40,
                                     child: Padding(
@@ -133,9 +165,10 @@ class BookingDatesModal extends StatelessWidget {
                                 ),
                               );
                             },
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                const Divider(color: Colors.grey, height: 2),
+                            separatorBuilder:
+                                (BuildContext context, int index) =>
+                                    const Divider(
+                                        color: Colors.grey, thickness: 0.6),
                           ),
                         )
                       ],
@@ -145,18 +178,29 @@ class BookingDatesModal extends StatelessWidget {
                         Expanded(
                           child: ListView.separated(
                             padding: const EdgeInsets.all(14),
-                            itemCount: availableDate.length,
+                            itemCount: widget.availableDate.length,
                             itemBuilder: (BuildContext context, int index) {
                               String dateLine = DateFormat.yMMMEd()
-                                  .format(availableDate[index]);
-                              return GestureDetector(
-                                onTap: () =>
-                                    pickedEndDay = availableDate[index],
-                                child: SizedBox(
-                                  height: 40,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Text(dateLine),
+                                  .format(widget.availableDate[index]);
+
+                              return Container(
+                                color: _pickedEndDayIndex == index
+                                    ? const Color.fromRGBO(0, 0, 0, 0.3)
+                                    : Colors.white,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      pickedEndDay =
+                                          widget.availableDate[index];
+                                      _pickedEndDayIndex = index;
+                                    });
+                                  },
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: Text(dateLine),
+                                    ),
                                   ),
                                 ),
                               );
@@ -164,20 +208,25 @@ class BookingDatesModal extends StatelessWidget {
                             separatorBuilder:
                                 (BuildContext context, int index) =>
                                     const Divider(
-                                        color: Colors.pinkAccent, height: 2),
+                                        color: Colors.grey, thickness: 0.6),
                           ),
                         ),
                         const SizedBox(width: 20),
                         Expanded(
                           child: ListView.separated(
                             padding: const EdgeInsets.all(14),
-                            itemCount: hoursOfTheDay.length,
+                            itemCount: widget.hoursOfTheDay.length,
                             itemBuilder: (BuildContext context, int index) {
-                              String hourLine = hoursOfTheDay[index];
-                              return GestureDetector(
-                                onTap: () => pickedStartHour = index,
+                              String hourLine = widget.hoursOfTheDay[index];
+
+                              return Container(
+                                color: pickedEndHour == index
+                                    ? const Color.fromRGBO(0, 0, 0, 0.3)
+                                    : Colors.white,
                                 child: GestureDetector(
-                                  onTap: () => pickedEndHour = index,
+                                  onTap: () => setState(() {
+                                    pickedEndHour = index;
+                                  }),
                                   child: SizedBox(
                                     height: 40,
                                     child: Padding(
@@ -188,9 +237,11 @@ class BookingDatesModal extends StatelessWidget {
                                 ),
                               );
                             },
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                const Divider(color: Colors.grey, height: 2),
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const Divider(
+                                  color: Colors.grey, thickness: 0.6);
+                            },
                           ),
                         )
                       ],
@@ -204,7 +255,7 @@ class BookingDatesModal extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.only(top: 16),
             width: 260,
-            height: 80,
+            height: 60,
             child: ElevatedButton(
               style: confirmationButtonStyle,
               onPressed: () {
