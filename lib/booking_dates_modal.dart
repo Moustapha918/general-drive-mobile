@@ -64,9 +64,12 @@ class _BookingDatesModalState extends State<BookingDatesModal> {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            pickedStartDay == null
-                                ? 'Choisir ...'
-                                : DateFormat.MEd().format(pickedStartDay!),
+                            pickedStartDay != null && pickedStartHour != null
+                                ? DateFormat.MEd().format(pickedStartDay!) +
+                                    ' à ' +
+                                    pickedStartHour.toString() +
+                                    'H'
+                                : 'Choisir ...',
                             style: const TextStyle(color: Colors.black),
                           )
                         ],
@@ -81,9 +84,12 @@ class _BookingDatesModalState extends State<BookingDatesModal> {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              pickedEndDay == null
-                                  ? 'Choisir ...'
-                                  : DateFormat.MEd().format(pickedEndDay!),
+                              pickedEndDay != null && pickedEndHour != null
+                                  ? DateFormat.MEd().format(pickedEndDay!) +
+                                      ' à ' +
+                                      pickedEndHour.toString() +
+                                      'H'
+                                  : 'Choisir ...',
                               style: const TextStyle(color: Colors.black),
                             )
                           ],
@@ -258,21 +264,27 @@ class _BookingDatesModalState extends State<BookingDatesModal> {
             height: 60,
             child: ElevatedButton(
               style: confirmationButtonStyle,
-              onPressed: () {
-                pickedStartDay = DateTime(
-                    pickedStartDay!.year,
-                    pickedStartDay!.month,
-                    pickedStartDay!.day,
-                    pickedStartHour!);
-                pickedEndDay = DateTime(pickedEndDay!.year, pickedEndDay!.month,
-                    pickedEndDay!.day, pickedEndHour!);
+              onPressed: (false != null &&
+                      pickedEndDay != null &&
+                      pickedStartHour != null &&
+                      pickedEndHour != null)
+                  ? () {
+                      pickedStartDay = DateTime(
+                          pickedStartDay!.year,
+                          pickedStartDay!.month,
+                          pickedStartDay!.day,
+                          pickedStartHour!);
+                      pickedEndDay = DateTime(
+                          pickedEndDay!.year,
+                          pickedEndDay!.month,
+                          pickedEndDay!.day,
+                          pickedEndHour!);
 
-                context
-                    .read<FilterVehicleNotfier>()
-                    .updateBookingDates(pickedStartDay!, pickedEndDay!);
-
-                print(DateFormat.yMMMMEEEEd().format(pickedStartDay!));
-              },
+                      context
+                          .read<FilterVehicleNotfier>()
+                          .updateBookingDates(pickedStartDay!, pickedEndDay!);
+                    }
+                  : null,
               child: const Text("Confirmer"),
             ),
           )
