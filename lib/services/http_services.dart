@@ -7,9 +7,10 @@ import '../models/vehicle_model.dart';
 class HttpServices {
   static String? hostname = dotenv.env['API_HOSTNAME'];
   static String? vehiclesUri = dotenv.env['VEHICLES_URI'];
+  static String baseUrl = 'https://gentle-fortress-77748.herokuapp.com';
 
   Future<List<VehicleModel>> getVehicles() async {
-    var url = Uri.http('localhost:8080', '/api/vehicles');
+    var url = Uri.parse(baseUrl + '/api/vehicles');
     try {
       var response = await http.get(url);
       if (response.statusCode == 200) {
