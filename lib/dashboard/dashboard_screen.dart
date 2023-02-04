@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:general_mobile_drive/dashboard/car_detail.dart';
 
 import '../extra/ccolors.dart';
 
@@ -16,13 +17,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: CColors.blueColor,
-          unselectedItemColor: CColors.textColor,iconSize: 20,
+          unselectedItemColor: CColors.textColor,
+          iconSize: 20,
           showSelectedLabels: true,
           showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle: const TextStyle(fontSize: 12),
           unselectedLabelStyle: const TextStyle(fontSize: 12),
-
           items: [
             BottomNavigationBarItem(
                 icon: Icon(
@@ -30,7 +31,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   color: CColors.blueColor,
                 ),
                 label: "Voltures"),
-
             const BottomNavigationBarItem(
                 icon: Icon(Icons.mail), label: "Dememdes"),
             const BottomNavigationBarItem(
@@ -139,6 +139,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         contentPadding: EdgeInsets.zero,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CarDetailScreen(),
+                              ));
+                        },
                         leading: const CircleAvatar(
                           backgroundImage: AssetImage("assets/images/car.jpg"),
                           radius: 30,
@@ -169,7 +176,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 )
                               ],
                             ),
-                            SizedBox(height: 2,),
+                            const SizedBox(
+                              height: 2,
+                            ),
                             Container(
                               padding: const EdgeInsets.all(2),
                               decoration: BoxDecoration(
