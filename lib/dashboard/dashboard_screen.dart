@@ -14,6 +14,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: CColors.blueColor,
+          unselectedItemColor: CColors.textColor,iconSize: 20,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: const TextStyle(fontSize: 12),
+          unselectedLabelStyle: const TextStyle(fontSize: 12),
+
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.car_crash,
+                  color: CColors.blueColor,
+                ),
+                label: "Voltures"),
+
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.mail), label: "Dememdes"),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.key), label: "Locations"),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.bar_chart), label: "Performance"),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: "Compte"),
+          ],
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
@@ -40,7 +67,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             value: e,
                             child: Text(
                               e,
-                              style: TextStyle(color: CColors.blueColor),
+                              style: TextStyle(
+                                  color: CColors.blueColor,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         )
@@ -55,12 +84,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 30),
               ),
-              SizedBox(
-                height: 30,
+              const SizedBox(
+                height: 15,
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
                   color: CColors.greyColor,
                   borderRadius: BorderRadius.circular(12),
@@ -88,7 +117,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               SizedBox(
@@ -102,7 +131,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           borderRadius: BorderRadius.circular(12))),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Expanded(
@@ -129,7 +158,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Voitures",
+                                  "Nanterre Préfecture RER, 92000 Nant",
                                   style: TextStyle(
                                       color: CColors.textColor, fontSize: 12),
                                 ),
@@ -140,14 +169,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 )
                               ],
                             ),
+                            SizedBox(height: 2,),
                             Container(
-                              padding: EdgeInsets.all(2),
+                              padding: const EdgeInsets.all(2),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: CColors.textColor,
                                 ),
                                 boxShadow: [
-                                  BoxShadow(
+                                  const BoxShadow(
                                     spreadRadius: 0,
                                     blurStyle: BlurStyle.outer,
                                     color: Colors.white,
