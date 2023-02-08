@@ -3,26 +3,33 @@ import 'package:flutter/material.dart';
 import '../extra/ccolors.dart';
 
 class CarDetailWidget extends StatelessWidget {
-  const CarDetailWidget({
+  String txt1;
+  String txt2;
+  double? padding;
+
+  CarDetailWidget({
+    this.padding = 5,
+    required this.txt1,
+    required this.txt2,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(padding!),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Marque",
+                txt1,
                 style: TextStyle(color: CColors.textColor),
               ),
               Row(
                 children: [
-                  const Text("Volkswagen"),
+                  Text(txt2),
                   const SizedBox(
                     width: 10,
                   ),

@@ -185,8 +185,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 border: Border.all(
                                   color: CColors.textColor,
                                 ),
-                                boxShadow: [
-                                  const BoxShadow(
+                                boxShadow: const [
+                                  BoxShadow(
                                     spreadRadius: 0,
                                     blurStyle: BlurStyle.outer,
                                     color: Colors.white,

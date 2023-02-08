@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/dashboard/car_detail_widget.dart';
 
 import '../extra/ccolors.dart';
+import '../register/registration_screen.dart';
 
 class CarDetailScreen extends StatefulWidget {
   const CarDetailScreen({Key? key}) : super(key: key);
@@ -39,9 +40,9 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const CarDetailWidget(),
-                const CarDetailWidget(),
-                const CarDetailWidget(),
+                CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
+                CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
+                CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -83,7 +84,14 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegistrationScreen(),
+                                  ));
+                            },
                             child: const Text("Continuar"),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: CColors.blueColor,
