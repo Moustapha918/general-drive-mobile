@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/car_details/car_image_widget.dart';
+import 'package:general_mobile_drive/car_details/check_box_widget.dart';
 
 class CarImagesScreen extends StatefulWidget {
   const CarImagesScreen({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
@@ -43,16 +45,63 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
             ),
           ],
         ),
-        elevation: 0,
+        elevation: 1,
       ),
-      body: Column(
-        children: const [
-          Divider(
-            thickness: 1,
-          ),
-          CarImageWidget(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Divider(
+            //   thickness: 1,
+            // ),
+            const CheckBoxWidget(
+              text: 'Adoptez nos angles de prise de vue',
+            ),
+            const CheckBoxWidget(
+                text: 'Choisissez un arriére-plan neutre et dégagé'),
+            const CheckBoxWidget(
+                text: 'Servez-vous uniquement de lumiére naturelle'),
+            const Divider(
+              thickness: 1,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                "Photo principales (3/4)",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ...List.generate(
+              imageInfoText.length,
+              (index) => CarImageWidget(
+                imageContainerText: imageContainerText[index],
+                imageInfoText: imageInfoText[index],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+
+  var imageInfoText = [
+    "Voir I'exemple Arriöre)",
+    "Voir exemple",
+    "Voir exemple",
+  ];
+
+  var imageContainerText = [
+    "Intérieur",
+    "Supplémentaire",
+    "Supplémentaire",
+  ];
 }

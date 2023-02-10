@@ -5,8 +5,13 @@ import 'package:general_mobile_drive/extra/ccolors.dart';
 import 'package:images_picker/images_picker.dart';
 
 class CarImageWidget extends StatefulWidget {
+  final String imageInfoText;
+  final String imageContainerText;
+
   const CarImageWidget({
     Key? key,
+    required this.imageInfoText,
+    required this.imageContainerText,
   }) : super(key: key);
 
   @override
@@ -27,20 +32,25 @@ class _CarImageWidgetState extends State<CarImageWidget> {
             child: buildImage(),
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                "Voir l'exemple (% Arriére)",
-                style: TextStyle(
+                // "Voir l'exemple (% Arriére)",
+                widget.imageInfoText,
+                style: const TextStyle(
                     color: Colors.black,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     fontSize: 18),
               ),
-              Icon(Icons.info_outline)
+              const Icon(Icons.info_outline),
+
             ],
+          ),
+          const SizedBox(
+            height: 30,
           ),
         ],
       ),
@@ -50,7 +60,7 @@ class _CarImageWidgetState extends State<CarImageWidget> {
   Widget buildImage() {
     if (image == null) {
       return GestureDetector(
-        onTap: (){
+        onTap: () {
           pickImage();
         },
         child: Container(
@@ -61,9 +71,10 @@ class _CarImageWidgetState extends State<CarImageWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Intérieur",
+                // "Intérieur",
+                widget.imageContainerText,
                 style: TextStyle(
-                    color: CColors.blueColor, fontWeight: FontWeight.w600),
+                    color: CColors.blueColor, fontWeight: FontWeight.w500),
               ),
               const SizedBox(
                 height: 5,
