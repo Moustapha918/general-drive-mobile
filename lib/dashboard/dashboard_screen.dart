@@ -124,11 +124,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: const Text("En Savior Plus"),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: CColors.blueColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12))),
+                    backgroundColor: CColors.blueColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text("En Savior Plus"),
                 ),
               ),
               const SizedBox(

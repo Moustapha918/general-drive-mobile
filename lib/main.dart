@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'car_details/car_photos_screen.dart';
+import 'car_details/details_screen.dart';
 import 'dashboard/dashboard_screen.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CarImagesScreen(),
+      home: const DetailScreen(),
     );
   }
 }

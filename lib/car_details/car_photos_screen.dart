@@ -87,6 +87,7 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
                 imageInfoText: imageInfoText[index],
               ),
             ),
+
           ],
         ),
       ),
