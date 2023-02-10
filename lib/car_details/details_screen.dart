@@ -50,7 +50,9 @@ class _DetailScreenState extends State<DetailScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Toyota Yaris"),
+                  const Text("Toyota Yaris",style: TextStyle(
+                    fontWeight: FontWeight.bold
+                  ),),
                   const SizedBox(
                     height: 2,
                   ),
