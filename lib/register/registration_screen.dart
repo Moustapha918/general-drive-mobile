@@ -36,7 +36,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.arrow_back_ios, color: CColors.blueColor),
+                    InkWell(onTap: (){
+                      option--;
+                      setState(() {
+
+                      });
+                    }, child: Icon(Icons.arrow_back_ios, color: CColors.blueColor)),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -81,10 +86,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ? const RegThree()
                             : (option == 3)
                                 ? const RegFour()
-                                : const RegFive(),
+                                : RegFive(),
                 Expanded(
                   child: SizedBox(),
                 ),
+                (option == 4) ?  Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: Colors.yellow.withOpacity(.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    "You can change these prices at any time ",
+                    style: TextStyle(
+                      height: 1.5,
+                    ),
+                  ),
+                ) : SizedBox(),
                 const Divider(
                   color: Colors.black38,
                 ),
