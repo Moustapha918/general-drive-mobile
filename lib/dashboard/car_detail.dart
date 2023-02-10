@@ -99,11 +99,11 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                                         const RegistrationScreen(),
                                   ));
                             },
-                            child: const Text("Continuar"),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: CColors.blueColor,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12))),
+                            child: const Text("Continuar"),
                           ),
                         )
                       ],
