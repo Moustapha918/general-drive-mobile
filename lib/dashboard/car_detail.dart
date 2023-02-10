@@ -40,9 +40,16 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
-                CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
-                CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
+                ...List.generate(
+                  heading.length,
+                  (index) => CarDetailWidget(
+                    txt1: heading[index],
+                    txt2: values[index],
+                  ),
+                ),
+                // CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
+                // CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
+                // CarDetailWidget(txt1: "Marque", txt2: "Volkswagen"),
                 Expanded(
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -110,4 +117,20 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
       ),
     );
   }
+
+  var heading = [
+    "Marque",
+    "Model",
+    "Année d'immatriculation",
+    "Kilométrage",
+    "Pres de",
+  ];
+
+  var values = [
+    "Volkswagen",
+    "Gold",
+    "2017",
+    "50-100 000 km",
+    "Paris",
+  ];
 }

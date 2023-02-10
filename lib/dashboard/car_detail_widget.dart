@@ -17,19 +17,27 @@ class CarDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(padding!),
+      padding: EdgeInsets.all(padding??8),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                txt1,
-                style: TextStyle(color: CColors.textColor),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 5
+                ),
+                child: Text(
+                  txt1,
+                  style: TextStyle(color: CColors.textColor),
+                ),
               ),
               Row(
                 children: [
-                  Text(txt2),
+                  Text(
+                    txt2,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
