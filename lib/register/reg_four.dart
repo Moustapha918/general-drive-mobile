@@ -60,9 +60,9 @@ class RegFour extends StatelessWidget {
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
         hintText: hint,
-        prefixIcon: Icon(Icons.search, color: Colors.black38),
+        // prefixIcon: Icon(Icons.search, color: Colors.black38),
         labelStyle: TextStyle(
-          color: CColors.textColor,
+          color: CColors.textColor,dem
           fontSize: 14,
         ),
         fillColor: Colors.black.withOpacity(.06),

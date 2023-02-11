@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/register/reg_five.dart';
 
+import '../car_details/car_photos_screen.dart';
 import '../custom_widgets/custom_button.dart';
 import '../extra/ccolors.dart';
 import 'reg_four.dart';
@@ -24,7 +25,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Column(
@@ -36,12 +40,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(onTap: (){
+                    InkWell(onTap: () {
                       option--;
                       setState(() {
 
                       });
-                    }, child: Icon(Icons.arrow_back_ios, color: CColors.blueColor)),
+                    },
+                        child: Icon(
+                            Icons.arrow_back_ios, color: CColors.blueColor)),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -54,12 +60,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           value: (option == 0)
                               ? .2
                               : (option == 1)
-                                  ? .4
-                                  : (option == 2)
-                                      ? .6
-                                      : (option == 3)
-                                          ? .8
-                                          : .99,
+                              ? .4
+                              : (option == 2)
+                              ? .6
+                              : (option == 3)
+                              ? .8
+                              : .99,
                         ),
                       ),
                     ),
@@ -81,17 +87,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 (option == 0)
                     ? const RegOne()
                     : (option == 1)
-                        ? const RegTwo()
-                        : (option == 2)
-                            ? const RegThree()
-                            : (option == 3)
-                                ? const RegFour()
-                                : RegFive(),
+                    ? const RegTwo()
+                    : (option == 2)
+                    ? const RegThree()
+                    : (option == 3)
+                    ? const RegFour()
+                    : RegFive(),
                 Expanded(
                   child: SizedBox(),
                 ),
-                (option == 4) ?  Container(
-                  width: MediaQuery.of(context).size.width,
+                (option == 4) ? Container(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     color: Colors.yellow.withOpacity(.2),
@@ -114,8 +123,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     w: 180,
                     onTap: () {
                       option++;
+                      if (option == 5) {
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                          builder: (context) => CarImagesScreen(),), (
+                            route) => false);
+                      }
                       setState(
-                        () {},
+                            () {},
                       );
                     },
                   ),

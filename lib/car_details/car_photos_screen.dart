@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/car_details/car_image_widget.dart';
 import 'package:general_mobile_drive/car_details/check_box_widget.dart';
 
+import 'details_screen.dart';
+
 class CarImagesScreen extends StatefulWidget {
   const CarImagesScreen({Key? key}) : super(key: key);
 
@@ -51,46 +53,53 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Divider(
-            //   thickness: 1,
-            // ),
-            const CheckBoxWidget(
-              text: 'Adoptez nos angles de prise de vue',
-            ),
-            const CheckBoxWidget(
-                text: 'Choisissez un arriére-plan neutre et dégagé'),
-            const CheckBoxWidget(
-                text: 'Servez-vous uniquement de lumiére naturelle'),
-            const Divider(
-              thickness: 1,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
-                "Photo principales (3/4)",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ...List.generate(
-              imageInfoText.length,
-              (index) => CarImageWidget(
-                imageContainerText: imageContainerText[index],
-                imageInfoText: imageInfoText[index],
-              ),
-            ),
-
-          ],
+          // Divider(
+          //   thickness: 1,
+          // ),
+          const CheckBoxWidget(
+          text: 'Adoptez nos angles de prise de vue',
+        ),
+        const CheckBoxWidget(
+            text: 'Choisissez un arriére-plan neutre et dégagé'),
+        const CheckBoxWidget(
+            text: 'Servez-vous uniquement de lumiére naturelle'),
+        const Divider(
+          thickness: 1,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        InkWell(
+            onTap: (){
+              Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) => DetailScreen(),), (
+                      route) => false);
+            },
+            child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        child: Text(
+          "Photo principales (3/4)",
+          style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 20),
         ),
       ),
+    ),
+    const SizedBox(
+    height: 30,
+    ),
+    ...List.generate(
+    imageInfoText.length,
+    (index) => CarImageWidget(
+    imageContainerText: imageContainerText[index],
+    imageInfoText: imageInfoText[index],
+    ),
+    ),
+
+    ],
+    ),
+    ),
     );
   }
 

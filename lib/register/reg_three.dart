@@ -35,7 +35,7 @@ class RegThree extends StatelessWidget {
               suffixIcon: Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 2.5),
                 child: Text(
-                  "France(+32)",
+                  "",
                   style: TextStyle(color: Colors.black),
                 ),
               ),

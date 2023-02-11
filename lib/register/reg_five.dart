@@ -148,7 +148,7 @@ class _RegFiveState extends State<RegFive> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: getContainer(Icons.remove, () {
-                        b++;
+                        b--;
                         setState(() {});
                       }),
                     ),
@@ -168,7 +168,9 @@ class _RegFiveState extends State<RegFive> {
 
   Widget getContainer(IconData icon, Function() onTap) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        onTap();
+      },
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black38),
