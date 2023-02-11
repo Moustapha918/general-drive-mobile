@@ -62,7 +62,7 @@ class RegFour extends StatelessWidget {
         hintText: hint,
         // prefixIcon: Icon(Icons.search, color: Colors.black38),
         labelStyle: TextStyle(
-          color: CColors.textColor,dem
+          color: CColors.textColor,
           fontSize: 14,
         ),
         fillColor: Colors.black.withOpacity(.06),
