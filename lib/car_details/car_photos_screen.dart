@@ -71,9 +71,9 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
         ),
         InkWell(
             onTap: (){
-              Navigator.pushAndRemoveUntil(context,
-                  MaterialPageRoute(builder: (context) => DetailScreen(),), (
-                      route) => false);
+              // Navigator.pushAndRemoveUntil(context,
+              //     MaterialPageRoute(builder: (context) => DetailScreen(),), (
+              //         route) => false);
             },
             child: const Padding(
         padding: EdgeInsets.symmetric(horizontal: 12),

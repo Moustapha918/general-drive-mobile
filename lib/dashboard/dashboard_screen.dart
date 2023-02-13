@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:general_mobile_drive/dashboard/car_detail.dart';
 import 'package:general_mobile_drive/dashboard/providers/dashboard_view_provider.dart';
 import 'package:general_mobile_drive/shared/models/car_model.dart';
 import 'package:provider/provider.dart';
 
+import '../car_details/details_screen.dart';
 import '../extra/ccolors.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -180,7 +180,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const CarDetailScreen(),
+            builder: (context) =>  DetailScreen(
+              model: model,
+            ),
           ),
         );
       },

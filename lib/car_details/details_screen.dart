@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/car_details/detail_widget.dart';
 
 import '../extra/ccolors.dart';
+import '../shared/models/car_model.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  final CarModel model;
+
+  const DetailScreen({Key? key, required this.model}) : super(key: key);
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -42,17 +45,20 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const CircleAvatar(
-                backgroundImage: AssetImage("assets/images/car.jpg"),
+              leading: CircleAvatar(
+                backgroundImage: (widget.model.images ?? []).isEmpty
+                    ? const AssetImage("assets/images/car.jpg")
+                    : NetworkImage(widget.model.images!.first) as ImageProvider,
                 radius: 30,
               ),
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Toyota Yaris",style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),),
+                  Text(
+                    "${widget.model.brand} ${widget.model.type}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(
                     height: 2,
                   ),
@@ -73,7 +79,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ],
                     ),
                     child: Text(
-                      "EL52RC",
+                      "${widget.model.registrationNumber}",
                       style: TextStyle(
                         color: CColors.textColor,
                         fontSize: 12,
@@ -92,23 +98,40 @@ class _DetailScreenState extends State<DetailScreen> {
             const SizedBox(
               height: 10,
             ),
-            ...List.generate(
-              titles.length,
-              (index) => DetailWidget(
-                title: titles[index],
-                iconData: icons[index],
+            ...[
+              DetailWidget(
+                title: titles[0],
+                iconData: icons[0],
               ),
-            ),
-            Divider(
+              DetailWidget(
+                title: "${widget.model.brand} ${widget.model.type} ${widget.model.type}",
+                iconData: icons[1],
+              ),
+              DetailWidget(
+                title: "${widget.model.location}",
+                iconData: icons[2],
+              ),
+              DetailWidget(
+                title: titles[3],
+                iconData: icons[3],
+              ),
+              DetailWidget(
+                title: titles[4],
+                iconData: icons[4],
+              ),
+              DetailWidget(
+                title: titles[5],
+                iconData: icons[5],
+              ),
+            ],
+            const Divider(
               thickness: 1,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 5
-              ),
-              child: DetailWidget(title: "Statut de llannonce", iconData: null ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: DetailWidget(title: "Statut de llannonce", iconData: null),
             ),
-            Divider(
+            const Divider(
               thickness: 1,
             ),
           ],
