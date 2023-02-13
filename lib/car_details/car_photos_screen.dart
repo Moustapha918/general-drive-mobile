@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/car_details/car_image_widget.dart';
 import 'package:general_mobile_drive/car_details/check_box_widget.dart';
 
-import 'details_screen.dart';
-
 class CarImagesScreen extends StatefulWidget {
-  const CarImagesScreen({Key? key}) : super(key: key);
+  final List<String>? images;
+
+  const CarImagesScreen({Key? key, this.images}) : super(key: key);
 
   @override
   State<CarImagesScreen> createState() => _CarImagesScreenState();
@@ -30,8 +30,8 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
         backgroundColor: Colors.white,
         title: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            Text(
+          children: [
+            const Text(
               "Photos",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
@@ -39,8 +39,8 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
                   fontSize: 16),
             ),
             Text(
-              "3/4",
-              style: TextStyle(
+              "${widget.images?.length ?? 0}/4",
+              style: const TextStyle(
                   fontWeight: FontWeight.w300,
                   color: Colors.black,
                   fontSize: 13),
@@ -53,53 +53,60 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          // Divider(
-          //   thickness: 1,
-          // ),
-          const CheckBoxWidget(
-          text: 'Adoptez nos angles de prise de vue',
-        ),
-        const CheckBoxWidget(
-            text: 'Choisissez un arriére-plan neutre et dégagé'),
-        const CheckBoxWidget(
-            text: 'Servez-vous uniquement de lumiére naturelle'),
-        const Divider(
-          thickness: 1,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        InkWell(
-            onTap: (){
-              // Navigator.pushAndRemoveUntil(context,
-              //     MaterialPageRoute(builder: (context) => DetailScreen(),), (
-              //         route) => false);
-            },
-            child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        child: Text(
-          "Photo principales (3/4)",
-          style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
+            // Divider(
+            //   thickness: 1,
+            // ),
+            const CheckBoxWidget(
+              text: 'Adoptez nos angles de prise de vue',
+            ),
+            const CheckBoxWidget(
+                text: 'Choisissez un arriére-plan neutre et dégagé'),
+            const CheckBoxWidget(
+                text: 'Servez-vous uniquement de lumiére naturelle'),
+            const Divider(
+              thickness: 1,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                // Navigator.pushAndRemoveUntil(context,
+                //     MaterialPageRoute(builder: (context) => DetailScreen(),), (
+                //         route) => false);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Text(
+                  "Photo principales (${widget.images?.length ?? 0}/4)",
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            // ...List.generate(
+            //   imageInfoText.length,
+            //   (index) => CarImageWidget(
+            //     imageContainerText: imageContainerText[index],
+            //     imageInfoText: imageInfoText[index],
+            //   ),
+            // ),
+            ...List.generate(
+              widget.images?.length ?? [].length,
+              (index) => CarImageWidget(
+                imageContainerText: imageContainerText[index],
+                image: widget.images![index],
+                imageInfoText: imageInfoText[index],
+              ),
+            ),
+          ],
         ),
       ),
-    ),
-    const SizedBox(
-    height: 30,
-    ),
-    ...List.generate(
-    imageInfoText.length,
-    (index) => CarImageWidget(
-    imageContainerText: imageContainerText[index],
-    imageInfoText: imageInfoText[index],
-    ),
-    ),
-
-    ],
-    ),
-    ),
     );
   }
 

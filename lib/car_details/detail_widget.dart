@@ -5,49 +5,53 @@ import '../extra/ccolors.dart';
 class DetailWidget extends StatelessWidget {
   final String title;
   final IconData? iconData;
+  final Function()? onTap;
 
   const DetailWidget({
     Key? key,
     required this.title,
-    required this.iconData,
+    required this.iconData, this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            if (iconData != null)
-              Icon(
-                iconData,
-                color: CColors.textColorBlue,
-                size: 30,
+        GestureDetector(
+          onTap:onTap ,
+          child: Row(
+            children: [
+              if (iconData != null)
+                Icon(
+                  iconData,
+                  color: CColors.textColorBlue,
+                  size: 30,
+                ),
+              const SizedBox(
+                width: 10,
               ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              title,
-              style: TextStyle(color: CColors.textColorBlue),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: CColors.textColor,
-                    size: 17,
+              Text(
+                title,
+                style: TextStyle(color: CColors.textColorBlue),
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: CColors.textColor,
+                      size: 17,
+                    ),
                   ),
                 ),
               ),
-            ),
 
-          ],
+            ],
+          ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         if( iconData !=null )
@@ -57,7 +61,7 @@ class DetailWidget extends StatelessWidget {
             thickness: 0.5,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 2.5,
         ),
       ],

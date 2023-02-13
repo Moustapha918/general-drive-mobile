@@ -3,6 +3,7 @@ import 'package:general_mobile_drive/car_details/detail_widget.dart';
 
 import '../extra/ccolors.dart';
 import '../shared/models/car_model.dart';
+import 'car_photos_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final CarModel model;
@@ -104,7 +105,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 iconData: icons[0],
               ),
               DetailWidget(
-                title: "${widget.model.brand} ${widget.model.type} ${widget.model.type}",
+                title:
+                    "${widget.model.brand} ${widget.model.type} ${widget.model.type}",
                 iconData: icons[1],
               ),
               DetailWidget(
@@ -113,6 +115,15 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
               DetailWidget(
                 title: titles[3],
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CarImagesScreen(
+                          images: widget.model.images,
+                        ),
+                      ));
+                },
                 iconData: icons[3],
               ),
               DetailWidget(
