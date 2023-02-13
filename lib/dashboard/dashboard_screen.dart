@@ -23,35 +23,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
       lazy: false,
       child: Consumer<DashBoardProvider>(
         builder: (context, provider, child) {
-          return SafeArea(
-            child: Scaffold(
-              bottomNavigationBar: BottomNavigationBar(
-                selectedItemColor: CColors.blueColor,
-                unselectedItemColor: CColors.textColor,
-                iconSize: 20,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
-                type: BottomNavigationBarType.fixed,
-                selectedLabelStyle: const TextStyle(fontSize: 12),
-                unselectedLabelStyle: const TextStyle(fontSize: 12),
-                items: [
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.car_crash,
-                        color: CColors.blueColor,
-                      ),
-                      label: "Voltures"),
-                  const BottomNavigationBarItem(
-                      icon: Icon(Icons.mail), label: "Dememdes"),
-                  const BottomNavigationBarItem(
-                      icon: Icon(Icons.key), label: "Locations"),
-                  const BottomNavigationBarItem(
-                      icon: Icon(Icons.bar_chart), label: "Performance"),
-                  const BottomNavigationBarItem(
-                      icon: Icon(Icons.person), label: "Compte"),
-                ],
-              ),
-              body: Padding(
+          return Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: CColors.blueColor,
+              unselectedItemColor: CColors.textColor,
+              iconSize: 20,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              type: BottomNavigationBarType.fixed,
+              selectedLabelStyle: const TextStyle(fontSize: 12),
+              unselectedLabelStyle: const TextStyle(fontSize: 12),
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.car_crash,
+                      color: CColors.blueColor,
+                    ),
+                    label: "Voltures"),
+                const BottomNavigationBarItem(
+                    icon: Icon(Icons.mail), label: "Dememdes"),
+                const BottomNavigationBarItem(
+                    icon: Icon(Icons.key), label: "Locations"),
+                const BottomNavigationBarItem(
+                    icon: Icon(Icons.bar_chart), label: "Performance"),
+                const BottomNavigationBarItem(
+                    icon: Icon(Icons.person), label: "Compte"),
+              ],
+            ),
+            body: SafeArea(
+              child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
