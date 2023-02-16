@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/car_details/car_image_widget.dart';
 import 'package:general_mobile_drive/car_details/check_box_widget.dart';
@@ -24,8 +26,12 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-              builder: (context) => const DashboardScreen(),), (route) => false);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DashboardScreen(),
+                ),
+                (route) => false);
           },
         ),
         centerTitle: true,
@@ -93,20 +99,20 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
             ),
             ...List.generate(
               imageInfoText.length,
-                  (index) =>
-                  CarImageWidget(
-                    imageContainerText: imageContainerText[index],
-                    imageInfoText: imageInfoText[index],
-                  ),
+              (index) => CarImageWidget(
+                imageContainerText: imageContainerText[index],
+                imageInfoText: imageInfoText[index],
+                onImageAdd: (File image) {},
+              ),
             ),
             ...List.generate(
               widget.images?.length ?? [].length,
-                  (index) =>
-                  CarImageWidget(
-                    imageContainerText: imageContainerText[index],
-                    // image: widget.images![index],
-                    imageInfoText: imageInfoText[index],
-                  ),
+              (index) => CarImageWidget(
+                imageContainerText: imageContainerText[index],
+                // image: widget.images![index],
+                imageInfoText: imageInfoText[index],
+                onImageAdd: (File image) {},
+              ),
             ),
           ],
         ),

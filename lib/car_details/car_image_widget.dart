@@ -6,12 +6,13 @@ import 'package:images_picker/images_picker.dart';
 
 class CarImageWidget extends StatefulWidget {
   final String imageInfoText;
+  final Function(File image) onImageAdd;
   final String imageContainerText;
 
   const CarImageWidget({
     Key? key,
     required this.imageInfoText,
-    required this.imageContainerText,
+    required this.imageContainerText, required this.onImageAdd,
   }) : super(key: key);
 
   @override
