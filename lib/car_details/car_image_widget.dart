@@ -7,12 +7,11 @@ import 'package:images_picker/images_picker.dart';
 class CarImageWidget extends StatefulWidget {
   final String imageInfoText;
   final String imageContainerText;
-  final String? image;
 
   const CarImageWidget({
     Key? key,
     required this.imageInfoText,
-    required this.imageContainerText, this.image,
+    required this.imageContainerText,
   }) : super(key: key);
 
   @override
@@ -20,6 +19,7 @@ class CarImageWidget extends StatefulWidget {
 }
 
 class _CarImageWidgetState extends State<CarImageWidget> {
+  File? image;
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +58,10 @@ class _CarImageWidgetState extends State<CarImageWidget> {
   }
 
   Widget buildImage() {
-    if (widget.image == null) {
+    if (image == null) {
       return GestureDetector(
         onTap: () {
-          // pickImage();
+          pickImage();
         },
         child: Container(
           width: double.infinity,
@@ -94,21 +94,20 @@ class _CarImageWidgetState extends State<CarImageWidget> {
       height: 200,
       fit: BoxFit.cover,
       // image: AssetImage("assets/images/car.jpg"),
-      // image: FileImage(image!),
-      image: NetworkImage(widget.image!),
+      image: FileImage(image!),
     );
   }
 
-  // void pickImage() async {
-  //   var file = await ImagesPicker.openCamera(
-  //     cropOpt: CropOption(),
-  //     pickType: PickType.image,
-  //     maxSize: 500,
-  //     quality: 0.6,
-  //   );
-  //   if (file != null) {
-  //     image = File(file.first.path);
-  //     setState(() {});
-  //   }
-  // }
+  void pickImage() async {
+    var file = await ImagesPicker.openCamera(
+      cropOpt: CropOption(),
+      pickType: PickType.image,
+      maxSize: 500,
+      quality: 0.6,
+    );
+    if (file != null) {
+      image = File(file.first.path);
+      setState(() {});
+    }
+  }
 }
