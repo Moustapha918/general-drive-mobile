@@ -1,17 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../dashboard/car_detail_widget.dart';
+import '../dashboard/providers/add_car_provider.dart';
+import '../extra/ccolors.dart';
 
-class RegOne extends StatelessWidget {
-  const RegOne({Key? key}) : super(key: key);
+class RegOne extends StatefulWidget {
+  RegOne({Key? key}) : super(key: key);
+
+  @override
+  State<RegOne> createState() => _RegOneState();
+}
+
+class _RegOneState extends State<RegOne> {
+  List<String> dropDownReg = [
+    'Farance',
+    'Australia',
+    'Pakistan',
+    'Other'
+  ];
+  var selectedReg = 'Farance';
+  List<String> dropDownYear = [
+    '2000',
+    '2001',
+    '2002',
+    '2003'
+  ];
+  var selectedYear = '2000';
+  late AddCarProvider carPro;
 
   @override
   Widget build(BuildContext context) {
-    print("object");
+    carPro = Provider.of<AddCarProvider>(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           const Text(
             "What's your plate number?",
@@ -24,8 +47,9 @@ class RegOne extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const TextField(
-            decoration: InputDecoration(
+          TextField(
+            controller: carPro.registrationNumber,
+            decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.black12),
               ),
@@ -37,19 +61,18 @@ class RegOne extends StatelessWidget {
               hintText: 'Plate Number',
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: CarDetailWidget(
-              txt1: "Registration Country",
-              txt2: "Farnace",
-              padding: 0,
-            ),
-          ),
-          CarDetailWidget(
-            txt1: "Release Year",
-            txt2: "2017",
-            padding: 0,
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 12.0),
+          //   child: CarDetailWidget(
+          //     txt1: "Registration Country",
+          //     txt2: "Farnace",
+          //     padding: 0,
+          //   ),
+          // ),
+
+          textRow("Registration Country", regCon()),
+          textRow("Release Year", releaseYear()),
+
           const SizedBox(
             height: 20,
           ),
@@ -67,6 +90,97 @@ class RegOne extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget textRow(String txt1, Widget w2) {
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Text(
+                  txt1,
+                  style: TextStyle(color: CColors.textColor),
+                ),
+              ),
+              w2,
+            ],
+          ),
+          const Divider(
+            thickness: 1,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget releaseYear() {
+    return Container(
+      width: 100,
+      decoration: BoxDecoration(
+          // border: Border.all(color: CColors.blueColor, width: 1),
+          borderRadius: BorderRadius.circular(10)),
+      child: DropdownButton<String>(
+        value: selectedYear,
+        isExpanded: true,
+        icon: const Icon(Icons.arrow_drop_down),
+        elevation: 16,
+        style: TextStyle(color: CColors.textColor),
+        underline: const SizedBox(),
+        onChanged: (String? newValue) {
+          setState(() {
+            selectedYear = newValue!;
+            carPro.modelYear = int.parse(selectedYear);
+          });
+        },
+        items: dropDownYear
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(value),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget regCon() {
+    return Container(
+      width: 100,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10)),
+      child: DropdownButton<String>(
+        value: selectedReg,
+        isExpanded: true,
+        icon: const Icon(Icons.arrow_drop_down),
+        elevation: 16,
+        style: TextStyle(color: CColors.textColor),
+        underline: const SizedBox(),
+        onChanged: (String? newValue) {
+          setState(() {
+            selectedReg = newValue!;
+            carPro.brand = selectedReg;
+          });
+        },
+        items: dropDownReg
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(value),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../dashboard/providers/add_car_provider.dart';
 import '../extra/ccolors.dart';
 
 class RegFour extends StatelessWidget {
-  const RegFour({Key? key}) : super(key: key);
+  RegFour({Key? key}) : super(key: key);
+
+  late AddCarProvider carPro;
+
 
   @override
   Widget build(BuildContext context) {
-    var search = TextEditingController();
-    print("object");
+    carPro = Provider.of<AddCarProvider>(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Where will you meet drivers for check-in?",
             style: TextStyle(
               color: Colors.black,
@@ -21,11 +25,11 @@ class RegFour extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          getTextField("", search),
-          SizedBox(
+          getTextField("", carPro.location),
+          const SizedBox(
             height: 25,
           ),
           Container(
@@ -45,8 +49,11 @@ class RegFour extends StatelessWidget {
       ),
     );
   }
-  TextFormField getTextField(String hint,
-      TextEditingController controller,) {
+
+  TextFormField getTextField(
+    String hint,
+    TextEditingController controller,
+  ) {
     return TextFormField(
       controller: controller,
       style: TextStyle(

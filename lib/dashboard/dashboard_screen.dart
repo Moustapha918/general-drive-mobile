@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../car_details/details_screen.dart';
 import '../extra/ccolors.dart';
+import '../register/registration_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -59,9 +60,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.add,
-                          color: CColors.blueColor,
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrationScreen(),));
+                          },
+                          child: Icon(
+                            Icons.add,
+                            color: CColors.blueColor,
+                          ),
                         ),
                         DropdownButton(
                           onChanged: (val) {},
