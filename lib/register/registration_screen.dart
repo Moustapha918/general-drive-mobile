@@ -26,7 +26,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) {
       return AddCarProvider();
-    }, child: Consumer(
+    }, child: Consumer<AddCarProvider>(
       builder: (context, value, child) {
         return Scaffold(
           body: SingleChildScrollView(
@@ -82,9 +82,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                           ),
                         ),
-                        Icon(
-                          Icons.cancel_outlined,
-                          color: CColors.blueColor,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Icon(
+                            Icons.cancel_outlined,
+                            color: CColors.blueColor,
+                          ),
                         ),
                       ],
                     ),
@@ -137,13 +142,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           if (option >= 0) {
                             option++;
                             if (option == 5) {
-                              Navigator.pushAndRemoveUntil(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const CarImagesScreen(),
-                                  ),
-                                  (route) => false);
+                                        ChangeNotifierProvider.value(
+                                            value: value,
+                                            child: const CarImagesScreen()),
+                                  ));
                             }
                             setState(
                               () {},

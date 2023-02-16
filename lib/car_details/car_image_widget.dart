@@ -108,6 +108,7 @@ class _CarImageWidgetState extends State<CarImageWidget> {
     );
     if (file != null) {
       image = File(file.first.path);
+      widget.onImageAdd(image!);
       setState(() {});
     }
   }
