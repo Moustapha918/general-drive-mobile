@@ -6,6 +6,7 @@ class AddCarModel {
       modelYear,
       location,
       type;
+
   late int sellPrice, rentPrice, wheelsNbr;
 
   late double price;

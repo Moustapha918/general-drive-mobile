@@ -14,6 +14,8 @@ class AddCarProvider extends ChangeNotifier{
 
 
 
+
+
   var rentPrice = TextEditingController();
   var color = TextEditingController();
 }
