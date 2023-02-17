@@ -57,7 +57,10 @@ class _VehiculeDataState extends State<VehiculeData> {
             ),
             _ActionButton(
                 icon: Icons.close,
-                onPressed: () {},
+                onPressed: () {
+                  print('---------close window');
+                  Navigator.of(context).pop(context);
+                },
                 position: Alignment.topLeft),
             _ActionButton(
                 icon: CupertinoIcons.share,

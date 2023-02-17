@@ -1,5 +1,6 @@
 import 'package:deyd_kata_flutter/filter_vehicle_notifier.dart';
 import 'package:deyd_kata_flutter/services/http_services.dart';
+import 'package:deyd_kata_flutter/vehicule_data.dart';
 import 'package:flutter/material.dart';
 import 'models/vehicle_model.dart';
 import 'package:provider/provider.dart';
@@ -40,33 +41,41 @@ class _VehicleListState extends State<VehicleList> {
             itemCount: vehicles!.length,
             itemBuilder: (BuildContext context, int index) {
               var vehicle = vehicles![index];
-              return Column(
-                children: [
-                  if (vehicle.images.isNotEmpty)
-                    Image.network(vehicle.images[0],
-                        errorBuilder: (BuildContext context, Object exception,
-                                StackTrace? stackTrace) =>
-                            Image.asset('assets/images/broken-1.png')),
-                  SizedBox(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            vehicle.brand,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.only(left: 10),
-                              child: Text(vehicle.modelYear)),
-                          const Spacer(),
-                          const Text('No reviews'),
-                        ],
+              return GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const VehiculeData(),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    if (vehicle.images.isNotEmpty)
+                      Image.network(vehicle.images[0],
+                          errorBuilder: (BuildContext context, Object exception,
+                                  StackTrace? stackTrace) =>
+                              Image.asset('assets/images/broken-1.png')),
+                    SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              vehicle.brand,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 10),
+                                child: Text(vehicle.modelYear)),
+                            const Spacer(),
+                            const Text('No reviews'),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Text(vehicle.rentPrice.toString() + ' MRO'),
-                ],
+                    Text(vehicle.rentPrice.toString() + ' MRO'),
+                  ],
+                ),
               );
             },
             separatorBuilder: (BuildContext context, int index) =>
