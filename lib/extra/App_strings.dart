@@ -20,6 +20,14 @@ class AppStrings{
   static String marque  = "Marque";
   static String model  = "Model";
   static String fuel  = "Fuel";
+  static String login  = "Login";
+  static String version  = "Version";
+  static String contactGetaround  = "Contact Getaround";
+  static String helpCenter  = "Help Center";
+  static String earnupto3000permonthbysharingit  = "Earn up to \$3000 per month by sharing it";
+  static String ownaCar  = "Own a Car";
+  static String signUp  = "Sign Up";
+  static String account  = "Account";
   static String Gearbox  = "Gearbox";
   static String youcanchangethesepricesatanytime  = "You can change these prices at any time";
 

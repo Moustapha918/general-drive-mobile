@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/dashboard/car_detail.dart';
+import 'package:general_mobile_drive/register/login_screen.dart';
 
 import 'car_details/car_photos_screen.dart';
 import 'car_details/details_screen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const DashboardScreen(),
+      home: const LoginScreen(),
     );
   }
 }
