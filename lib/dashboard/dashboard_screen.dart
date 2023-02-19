@@ -4,6 +4,7 @@ import 'package:general_mobile_drive/shared/models/car_model.dart';
 import 'package:provider/provider.dart';
 
 import '../car_details/details_screen.dart';
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 import '../register/registration_screen.dart';
 
@@ -71,7 +72,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         DropdownButton(
                           onChanged: (val) {},
-                          value: "Toutes vos voitures",
+                          value: AppStrings.toutesVosVoitures,
                           icon: Icon(
                             Icons.arrow_drop_down,
                             color: CColors.blueColor,
@@ -93,8 +94,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     ),
-                    const Text(
-                      "Voitures",
+                    Text(
+                      AppStrings.voitures,
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -126,7 +127,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 border: InputBorder.none,
                                 hintStyle: TextStyle(color: CColors.textColor),
                                 isDense: true,
-                                hintText: "Rechercher par plaque d'immatric...",
+                                hintText: "${AppStrings.rechercherparplaquedimmatric}...",
                               ),
                             ),
                           ),
@@ -146,7 +147,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text("En Savior Plus"),
+                        child: Text(AppStrings.enSaviorPlus),
                       ),
                     ),
                     const SizedBox(
@@ -253,9 +254,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   var categories = [
-    "Toutes vos voitures",
-    "Toutes vos voitures 2",
-    "Toutes vos voitures 3",
-    "Toutes vos voitures 4",
+    AppStrings.toutesvosvoitures,
+    "${AppStrings.toutesvosvoitures} 2",
+    "${AppStrings.toutesvosvoitures} 3",
+    "${AppStrings.toutesvosvoitures} 4",
   ];
 }

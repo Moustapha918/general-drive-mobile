@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../dashboard/car_detail_widget.dart';
 import '../dashboard/providers/add_car_provider.dart';
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 import 'car_details_check_widget.dart';
 
@@ -15,11 +16,11 @@ class RegTwo extends StatefulWidget {
 
 class _RegTwoState extends State<RegTwo> {
   List<String> dropDownFuel = [
-    'Petrol',
-    'Gas',
-    'Other'
+    AppStrings.Petrol,
+    AppStrings.Gas,
+    AppStrings.other
   ];
-  var selectedFuel = 'Petrol';
+  var selectedFuel =  AppStrings.Petrol;
   late AddCarProvider carPro;
 
   int c = 0;
@@ -32,8 +33,8 @@ class _RegTwoState extends State<RegTwo> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Add more details",
+          Text(
+            AppStrings.addmoredetails,
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
@@ -43,9 +44,9 @@ class _RegTwoState extends State<RegTwo> {
           const SizedBox(
             height: 10,
           ),
-          textRow("Fuel", fuelCon()),
+          textRow(AppStrings.fuel, fuelCon()),
 
-          const TextField(
+          TextField(
             decoration: InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.black12),
@@ -55,7 +56,7 @@ class _RegTwoState extends State<RegTwo> {
               ),
               border: InputBorder.none,
               hintStyle: TextStyle(color: Colors.black38),
-              hintText: 'Gearbox',
+              hintText: AppStrings.Gearbox,
             ),
           ),
           const SizedBox(
@@ -69,7 +70,7 @@ class _RegTwoState extends State<RegTwo> {
               });
             },
             child: CarDetailsCheckWidget(
-              txt1: 'Manual GearBox',
+              txt1: AppStrings.manualGearBox,
               check: (c == 0) ? true : false,
             ),
           ),
@@ -84,7 +85,7 @@ class _RegTwoState extends State<RegTwo> {
               });
             },
             child: CarDetailsCheckWidget(
-              txt1: 'Automatic GearBox',
+              txt1: AppStrings.automaticGearBox,
               check: (c == 1) ? true : false,
 
             ),
@@ -98,8 +99,8 @@ class _RegTwoState extends State<RegTwo> {
               color: Colors.yellow.withOpacity(.2),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Text(
-              "You can find this information on the car registration certificate ",
+            child: Text(
+              "${AppStrings.youcanfindthisinformationonthecarregistrationcertificate} ",
               style: TextStyle(
                 height: 1.5,
               ),

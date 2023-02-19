@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/dashboard/car_detail_widget.dart';
 
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 import '../register/registration_screen.dart';
 
@@ -103,7 +104,7 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
                                 backgroundColor: CColors.blueColor,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12))),
-                            child: const Text("Continuar"),
+                            child: Text(AppStrings.continuar),
                           ),
                         )
                       ],
@@ -119,18 +120,18 @@ class _CarDetailScreenState extends State<CarDetailScreen> {
   }
 
   var heading = [
-    "Marque",
-    "Model",
-    "Année d'immatriculation",
-    "Kilométrage",
-    "Pres de",
+    AppStrings.marque,
+    AppStrings.model,
+    AppStrings.anneedimmatriculation,
+    AppStrings.kilometrage,
+    AppStrings.presde,
   ];
 
   var values = [
-    "Volkswagen",
-    "Gold",
+    AppStrings.volkswagen,
+    AppStrings.gold,
     "2017",
     "50-100 000 km",
-    "Paris",
+    AppStrings.paris,
   ];
 }

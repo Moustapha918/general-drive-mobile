@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../extra/App_strings.dart';
+
 class RegThree extends StatelessWidget {
   const RegThree({Key? key}) : super(key: key);
 
@@ -9,9 +11,9 @@ class RegThree extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
-            "What's your Phone number?",
+            "${AppStrings.WhatsyourPhonenumber}?",
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
@@ -31,7 +33,7 @@ class RegThree extends StatelessWidget {
               ),
               border: InputBorder.none,
               hintStyle: TextStyle(color: Colors.black38),
-              hintText: 'Country code',
+              hintText: AppStrings.countrycode,
               suffixIcon: Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 2.5),
                 child: Text(

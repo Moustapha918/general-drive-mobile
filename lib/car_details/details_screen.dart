@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:general_mobile_drive/car_details/detail_widget.dart';
 
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 import '../shared/models/car_model.dart';
 import 'car_photos_screen.dart';
@@ -138,9 +139,9 @@ class _DetailScreenState extends State<DetailScreen> {
             const Divider(
               thickness: 1,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
-              child: DetailWidget(title: "Statut de llannonce", iconData: null),
+              child: DetailWidget(title: AppStrings.statutDeLlannonce, iconData: null),
             ),
             const Divider(
               thickness: 1,
@@ -161,11 +162,11 @@ class _DetailScreenState extends State<DetailScreen> {
   ];
 
   var titles = [
-    "Réservation instantanée",
-    "Description",
-    "Adresse",
-    "Photos",
-    "Mes conditions",
-    "Assurance et qualité",
+    AppStrings.reservationInstantanee,
+    AppStrings.description,
+    AppStrings.adresse,
+    AppStrings.photos,
+    AppStrings.meCconditions,
+    AppStrings.assuranceEtQualite,
   ];
 }

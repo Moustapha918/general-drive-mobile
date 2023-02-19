@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../dashboard/providers/add_car_provider.dart';
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 
 class RegFour extends StatelessWidget {
@@ -38,8 +39,8 @@ class RegFour extends StatelessWidget {
               color: Colors.yellow.withOpacity(.2),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Text(
-              "This address will be used to allow drivers to rent your car  ",
+            child: Text(
+              "${AppStrings.thisaddresswillbeusedtoallowdriverstorentyourcar}  ",
               style: TextStyle(
                 height: 1.5,
               ),

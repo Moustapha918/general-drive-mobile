@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 
 class RegFive extends StatefulWidget {
@@ -16,13 +17,12 @@ class _RegFiveState extends State<RegFive> {
 
   @override
   Widget build(BuildContext context) {
-    print("object");
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Set your prices per day according to demand",
+          Text(
+            AppStrings.setyourpricesperdayaccordingtodemand,
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
@@ -46,8 +46,8 @@ class _RegFiveState extends State<RegFive> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text(
-                          "Low",
+                        Text(
+                          AppStrings.low,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -57,8 +57,8 @@ class _RegFiveState extends State<RegFive> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "For example, weekdays in school terms",
+                    Text(
+                      AppStrings.forexampleweekdaysinschoolterms,
                       style: TextStyle(color: Colors.black38),
                     ),
                     SizedBox(
@@ -122,8 +122,8 @@ class _RegFiveState extends State<RegFive> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "For example, weekdays in school terms",
+                      Text(
+                      AppStrings.forexampleweekdaysinschoolterms,
                       style: TextStyle(color: Colors.black38),
                     ),
                     SizedBox(

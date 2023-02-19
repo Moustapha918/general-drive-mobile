@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../dashboard/car_detail_widget.dart';
 import '../dashboard/providers/add_car_provider.dart';
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 
 class RegOne extends StatefulWidget {
@@ -14,12 +15,12 @@ class RegOne extends StatefulWidget {
 
 class _RegOneState extends State<RegOne> {
   List<String> dropDownReg = [
-    'Farance',
-    'Australia',
-    'Pakistan',
-    'Other'
+    AppStrings.farance,
+    AppStrings.Australia,
+    AppStrings.Pakistan,
+    AppStrings.other,
   ];
-  var selectedReg = 'Farance';
+  var selectedReg = AppStrings.farance;
   List<String> dropDownYear = [
     '2000',
     '2001',
@@ -36,8 +37,8 @@ class _RegOneState extends State<RegOne> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "What's your plate number?",
+          Text(
+            AppStrings.Whatsyourplatenumber,
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
@@ -49,7 +50,7 @@ class _RegOneState extends State<RegOne> {
           ),
           TextField(
             controller: carPro.registrationNumber,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.black12),
               ),
@@ -58,7 +59,7 @@ class _RegOneState extends State<RegOne> {
               ),
               border: InputBorder.none,
               hintStyle: TextStyle(color: Colors.black38),
-              hintText: 'Plate Number',
+              hintText: AppStrings.PlateNumber,
             ),
           ),
           // Padding(
@@ -82,8 +83,8 @@ class _RegOneState extends State<RegOne> {
               color: Colors.yellow.withOpacity(.2),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Text(
-              "You can find this information on the car registration certificate ",
+            child: Text(
+              "${AppStrings.youcanfindthisinformationonthecarregistrationcertificate} ",
               style: TextStyle(
                 height: 1.5,
               ),

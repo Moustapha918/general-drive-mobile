@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../car_details/car_photos_screen.dart';
 import '../custom_widgets/custom_button.dart';
 import '../dashboard/dashboard_screen.dart';
+import '../extra/App_strings.dart';
 import '../extra/ccolors.dart';
 import 'reg_four.dart';
 import 'reg_one.dart';
@@ -122,8 +123,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               color: Colors.yellow.withOpacity(.2),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Text(
-                              "You can change these prices at any time ",
+                            child: Text(
+                              "${AppStrings.youcanchangethesepricesatanytime} ",
                               style: TextStyle(
                                 height: 1.5,
                               ),

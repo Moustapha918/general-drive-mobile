@@ -6,6 +6,7 @@ import 'package:general_mobile_drive/car_details/check_box_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../dashboard/providers/add_car_provider.dart';
+import '../extra/App_strings.dart';
 
 class CarImagesScreen extends StatefulWidget {
   final List<String>? images;
@@ -44,13 +45,13 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
             actions: [
               TextButton(onPressed: (){
                 provider.addCar();
-              }, child: Text("Add Car"))
+              }, child: Text(AppStrings.addCar))
             ],
             title: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  "Photos",
+                Text(
+                  AppStrings.photos,
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
@@ -74,13 +75,13 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
                 // Divider(
                 //   thickness: 1,
                 // ),
-                const CheckBoxWidget(
-                  text: 'Adoptez nos angles de prise de vue',
+                CheckBoxWidget(
+                  text: AppStrings.adoptezNosAnglesDePriseDeVue,
                 ),
-                const CheckBoxWidget(
-                    text: 'Choisissez un arriére-plan neutre et dégagé'),
-                const CheckBoxWidget(
-                    text: 'Servez-vous uniquement de lumiére naturelle'),
+                CheckBoxWidget(
+                    text: AppStrings.choisissezUnArrirePlanNeutreEtDgag),
+                CheckBoxWidget(
+                    text: AppStrings.servezVousUniquementDeLumireNaturelle),
                 const Divider(
                   thickness: 1,
                 ),
@@ -96,7 +97,7 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Text(
-                      "Photo principales (${widget.images?.length ?? 0}/4)",
+                      "${AppStrings.photoPrincipales} (${widget.images?.length ?? 0}/4)",
                       style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w600,
@@ -140,14 +141,14 @@ class _CarImagesScreenState extends State<CarImagesScreen> {
   }
 
   var imageInfoText = [
-    "Voir I'exemple Arriöre)",
-    "Voir exemple",
-    "Voir exemple",
+    AppStrings.voirIexempleArrire,
+    AppStrings.voirExemple,
+    AppStrings.voirExemple,
   ];
 
   var imageContainerText = [
-    "Intérieur",
-    "Supplémentaire",
-    "Supplémentaire",
+    AppStrings.intrieur,
+    AppStrings.supplementaire,
+    AppStrings.supplementaire,
   ];
 }
