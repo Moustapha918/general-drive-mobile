@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:general_mobile_drive/dashboard/car_detail.dart';
 import 'package:general_mobile_drive/register/login_screen.dart';
 
-import 'car_details/car_photos_screen.dart';
-import 'car_details/details_screen.dart';
-import 'dashboard/dashboard_screen.dart';
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -17,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutterapp',
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

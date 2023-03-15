@@ -60,5 +60,16 @@ class AppStrings{
   static String presde  = "Pres de";
   static String kilometrage  = "Kilométrage";
   static String anneedimmatriculation  = "Année d'immatriculation";
+  ///  //////////////////////////
+  ///  Strings
+// App Title
+  static const String appTitle = "Flutter Tabbar";
+  static const String rentals ="Rentals";
+  static const String searchForRental ="Search for a rental";
+  static const String upComing = "UpComing";
+  static const String inProgress = "InProgress";
+  static const String ended = "Ended";
+  static const String rentalData = "rentalData";
 
+///  //////////////////////////
 }
