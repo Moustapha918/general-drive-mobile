@@ -58,7 +58,7 @@ class GetButton extends StatelessWidget {
                 : const SizedBox(),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white,
               )
